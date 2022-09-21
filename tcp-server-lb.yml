@@ -1,0 +1,22 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: tcp-server
+  namespace: default
+  labels:
+    app: tcp-server
+spec:
+  ports:
+    - protocol: TCP
+      port: 8888
+      targetPort: 8888
+  selector:
+    app: tcp-server
+  type: LoadBalancer
+  sessionAffinity: None
+  externalTrafficPolicy: Local
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  allocateLoadBalancerNodePorts: true
+  internalTrafficPolicy: Cluster
